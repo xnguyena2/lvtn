@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;fuzzycommitment.Main.connectToServer()&apos; to &apos;eroll&apos;&#x0D;&#x0A;- Original project: &apos;DSTTClient&apos;&#x0D;&#x0A;- Original element: &apos;fuzzycommitment.Main.connectToServer()&apos;&#x0D;&#x0A;- Renamed element: &apos;fuzzycommitment.Main.eroll()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;connectToServer&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/src&lt;fuzzycommitment{Main.java[Main~connectToServer" name="eroll" references="true" stamp="1480426553313" version="1.0"/>
+</session>

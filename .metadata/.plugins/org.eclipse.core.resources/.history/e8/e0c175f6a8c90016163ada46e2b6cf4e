@@ -1,0 +1,13 @@
+package Server2;
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = Encrypt.Encrypt.encrypt("hello", "hello");
+		System.out.println(s);
+		System.out.println(Encrypt.Encrypt.decrypt("hello","VfHe1TxhlMvcrToRdGZBrA=="));
+		
+	}
+
+}

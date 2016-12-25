@@ -1,0 +1,16 @@
+package Server2;
+
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.util.text.BasicTextEncryptor;
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s = Encrypt.Encrypt.encrypt("hello", "hello");
+		System.out.println(s);
+		System.out.println(Encrypt.Encrypt.decrypt("hello","GWef+MokAz1ksvfQxyJhVw=="));
+		
+	}
+
+}

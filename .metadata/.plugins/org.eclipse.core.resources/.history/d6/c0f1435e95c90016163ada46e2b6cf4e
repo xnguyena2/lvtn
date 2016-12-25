@@ -1,0 +1,21 @@
+package Server2;
+
+import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
+import org.jasypt.util.text.BasicTextEncryptor;
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		/*System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));
+		System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));
+		System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));
+		System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));*/
+		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+		encryptor.setPassword("jasypt");                     // we HAVE TO set a password
+		encryptor.setAlgorithm("PBEWithMD5AndTripleDES");    // optionally set the algorithm
+		System.out.println(encryptor.encrypt("hello"));
+		
+	}
+
+}

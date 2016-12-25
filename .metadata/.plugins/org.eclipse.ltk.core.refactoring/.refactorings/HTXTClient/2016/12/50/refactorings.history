@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;fuzzycommitment&apos; to &apos;MyServer/src&apos;&#x0D;&#x0A;- Original project: &apos;DSTTClient&apos;&#x0D;&#x0A;- Destination element: &apos;MyServer/src&apos;&#x0D;&#x0A;- Original element: &apos;DSTTClient/src/fuzzycommitment&apos;" description="Copy package" destination="=MyServer/src" element1="/src&lt;fuzzycommitment" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1481401466898" version="1.0"/>
+</session>

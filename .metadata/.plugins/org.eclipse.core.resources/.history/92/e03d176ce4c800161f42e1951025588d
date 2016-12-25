@@ -1,0 +1,20 @@
+package Encrypt;
+
+import org.jasypt.util.text.StrongTextEncryptor;
+
+public class Encrypt {
+
+	static String encrypt(String key, String plainText){
+		StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+		textEncryptor.setPassword(key);
+		String myEncryptedText = textEncryptor.encrypt(plainText);
+		return myEncryptedText;
+	}
+	
+	static String decrypt(String key, String cipherText){
+		StrongTextEncryptor textEncryptor = new StrongTextEncryptor();
+		textEncryptor.setPassword(key);
+		String plainText = textEncryptor.decrypt(cipherText);
+		return plainText;
+	}
+}

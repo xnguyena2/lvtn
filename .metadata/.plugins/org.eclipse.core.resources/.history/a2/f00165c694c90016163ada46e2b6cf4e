@@ -1,0 +1,19 @@
+package Server2;
+
+import org.jasypt.util.text.BasicTextEncryptor;
+
+public class test {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		/*System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));
+		System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));
+		System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));
+		System.out.println(Encrypt.Encrypt.encrypt("hello", "hello"));*/
+		BasicTextEncryptor textEncryptor = new BasicTextEncryptor();
+		textEncryptor.setPassword("hello");
+		System.out.println(textEncryptor.encrypt("hello"));
+		
+	}
+
+}
