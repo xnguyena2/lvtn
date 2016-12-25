@@ -21,6 +21,7 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Random;
 
+import mainfunction.Permute;
 import mainfunction.Vertify;
 
 /**
@@ -290,11 +291,13 @@ public class ServerGui1 extends javax.swing.JFrame {
 		private Socket socket;
         private int clientNumber;
         double[] BTC;
+        int[] P;
 
         public Capitalizer(Socket socket, int clientNumber) {
             this.socket = socket;
             this.clientNumber = clientNumber;
             readBTC();
+            readP();
             log("New connection with client# " + clientNumber + " at " + socket);
             gStatus.setText("New connection with client# " + clientNumber + " at " + socket);
         }
@@ -310,6 +313,16 @@ public class ServerGui1 extends javax.swing.JFrame {
     		try {
     			String content = readFile("BTC.txt", StandardCharsets.UTF_8);
     			BTC = convertToDoubleAr(content);
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
+    	}
+    	public void readP(){
+    		try {
+    			String content = readFile("P.txt", StandardCharsets.UTF_8);
+    			if(content!="" && content!=null)
+    				P = getString2IntA(content);
     		} catch (IOException e) {
     			// TODO Auto-generated catch block
     			e.printStackTrace();
@@ -356,20 +369,32 @@ public class ServerGui1 extends javax.swing.JFrame {
                     log("input:"+input);
                     String respone = "";
                     if (input.equals("getna")) {
-                    	respone = generaNA();
+                    	
                     }
                     if(input.equals("enrollment")){
                     	String BTCs = in.readLine();
                     	fileUtils.writetofile("BTC.txt", BTCs);
+                    	String Per = in.readLine();
+                    	P = getString2IntA(Per);
+                    	fileUtils.writetofile("P.txt", Per);
                     	gBtc.setText(BTCs);
                     	BTC = convertToDoubleAr(BTCs);
                     	//fileUtils.writetofile("S.txt", in.readLine());
                     	respone = "enrollment_success";
                     }else if(input.equals("authentication")){
+                    	double[] BTCOld = BTC.clone();
+                    	
+                    	respone = generaNA(BTC);
+                    	out.println(respone);
+                    	
+                    	BTC = Permute.permute(P,BTC);
+                    	
                     	String fuzzyTranforRecived = in.readLine();
                     	gFuzzyTransfor.setText(fuzzyTranforRecived);
                     	Vertify vrt = new Vertify();
                     	int[] decodeCommitValue = new int[BTC.length], quatizaBio = new int[BTC.length];
+                    	
+                    	
                     	int[] keyDecode = vrt.vertify(BTC, getString2IntA(fuzzyTranforRecived), decodeCommitValue, quatizaBio);
                     	respone = Arrays.toString(keyDecode);
                     	
@@ -403,6 +428,7 @@ public class ServerGui1 extends javax.swing.JFrame {
                     	gBtc.setText(Arrays.toString(BTC));
                     	gBtcQuatiza.setText(Arrays.toString(quatizaBio));
                     	gFuzzyApply.setText(Arrays.toString(decodeCommitValue));
+                    	BTC = BTCOld;
                     }
                     out.println(respone);
                 }
@@ -418,8 +444,10 @@ public class ServerGui1 extends javax.swing.JFrame {
             }
         }
         
+        
         int[] getString2IntA(String content){
         	String[] cnt = content.split(" ");
+        	if(cnt.length<200)return null;
         	int[] result = new int[cnt.length];
         	for(int i = 0; i<result.length;i++){
         		result[i] = Integer.parseInt(cnt[i]);
@@ -427,11 +455,13 @@ public class ServerGui1 extends javax.swing.JFrame {
         	return result;
         }
         
-        String generaNA(){
+        String generaNA(double[] bio){
         	String result = "";
     		Random rand = new Random();
     		for(int i = 0;i < 200;i++){
-    			result+= rand.nextDouble();
+    			double na = rand.nextDouble();
+    			bio[i] += na;
+    			result+= na;
     			if(i!=199)
     				result+=" ";
     		}

@@ -32,6 +32,7 @@ import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
 import EncriptUtils.Encrypt;
+import MathUtils.Permute;
 import javafaces.FaceRecognition;
 import mainfunction.Authentication;
 import mainfunction.Enrollment;
@@ -417,6 +418,7 @@ public class UserGui extends javax.swing.JFrame {
 	    public boolean authentication = false;
 	    
 	    double[] bio;
+	    int[] P;
 	    
 	    void enroll(double[] bio){
 	    	this.bio =  bio;
@@ -437,13 +439,19 @@ public class UserGui extends javax.swing.JFrame {
 	            gInputBio.setText(Arrays.toString(bio));
 	            gKM.setText(Arrays.toString(enrll.getM()));
 	            gBioNonInvert.setText(bioTranfor);
-	            
+
+	            P = new int[200];
+	        	String PS = Permute.generaStringP(P);
+	        	
 	        	out.println("enrollment");	            
 	        	out.println(bioTranfor);
+	        	out.println(PS);
+	        	
 	        	//out.println(S);
 				String input = in.readLine();
 				System.out.print("response:"+input);//Arrays.toString(convertToDoubleAr(input)));
 				enrll.saveM();
+        		fileUtils.fileUtils.writetofile("P.txt", PS);
 				
 				
 				
@@ -482,10 +490,14 @@ public class UserGui extends javax.swing.JFrame {
         
         public void login(BufferedReader in, PrintWriter out, double[] bio){
             try {
+	        	out.println("authentication");	            
+	        	
             	Authentication authen = new Authentication();
             	int[] quatizaBio  = new int[bio.length], key = new int[bio.length], realKey = new int[bio.length];
             	
 	            double[] bioNonInvert = authen.generBioTranfor(bio);
+	        	addBio(in.readLine(),bioNonInvert);
+	        	bioNonInvert = Permute.permute(P,bioNonInvert);
 	            int[] fuzzyEncoded = authen.fuzzyEncode(bioNonInvert, quatizaBio, key, realKey);
 	            System.out.println(toString(bioNonInvert));
 	            
@@ -497,7 +509,6 @@ public class UserGui extends javax.swing.JFrame {
 	            gKey.setText(Arrays.toString(realKey));
 	            gFuzzyEncode.setText(Arrays.toString(fuzzyEncoded));
 	            
-	        	out.println("authentication");	            
 	        	out.println(toString(fuzzyEncoded));
 	        	//out.println(S);
 				String input = in.readLine();
@@ -575,9 +586,30 @@ public class UserGui extends javax.swing.JFrame {
     		}
     		return result;
     	}
+    	
+
+        int[] getString2IntA(String content){
+        	String[] cnt = content.split(" ");
+        	if(cnt.length<200)return null;
+        	int[] result = new int[cnt.length];
+        	for(int i = 0; i<result.length;i++){
+        		result[i] = Integer.parseInt(cnt[i]);
+        	}
+        	return result;
+        }
+        
+        void addBio(String content, double[] bio){
+        	String[] cnt = content.split(" ");
+        	for(int i = 0; i<bio.length;i++){
+        		bio[i] += Double.parseDouble(cnt[i]);
+        	}
+        }
 	    
 	    public ClientThread(Socket socket){
 	    	this.socket = socket;
+    		String PS = fileUtils.fileUtils.readFile("P.txt");
+    		if(PS!="" && PS!=null)
+    			P = getString2IntA(PS);
 	    }
 	    
 		@Override

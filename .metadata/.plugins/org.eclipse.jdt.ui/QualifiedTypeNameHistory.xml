@@ -49,4 +49,6 @@
 <fullyQualifiedTypeName name="org.jasypt.encryption.pbe.StandardPBEStringEncryptor"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
 <fullyQualifiedTypeName name="java.util.Arrays"/>
+<fullyQualifiedTypeName name="mainfunction.Permute"/>
+<fullyQualifiedTypeName name="MathUtils.Permute"/>
 </qualifiedTypeNameHistroy>

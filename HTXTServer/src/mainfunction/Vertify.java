@@ -14,7 +14,7 @@ public class Vertify {
 	
 	public int[] vertify(double[] mainBio, int[] fzzCmmtTransfo, int[] decodeCommitValue, int[] quatizaBio){
 
-		int[] tempquatizaBio = fzzCmmt.QuatizationTransfo(mainBio, quatization/sqrt2);
+		int[] tempquatizaBio = fzzCmmt.QuatizationTransfo(mainBio, quatization/(1+sqrt2));
 		int[] tempdecodeCommitValue = fzzCmmt.FuzzyTransFoFunction(tempquatizaBio, fzzCmmtTransfo);
 		int[] keyDecode = fzzCmmt.Decode(tempdecodeCommitValue);
 		nativeCopy(tempdecodeCommitValue, decodeCommitValue);

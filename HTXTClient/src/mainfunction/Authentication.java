@@ -37,7 +37,7 @@ public class Authentication {
 	
 	public int[] fuzzyEncode(double[] bio, int[] quatizaBio,int[] key, int[] realKey){
 		FzzCmmt fzzCmmt = new FzzCmmt(delta,core,quatization);
-		int[] temQauatizaBio = fzzCmmt.QuatizationTransfo(bio, quatization/sqrt2);
+		int[] temQauatizaBio = fzzCmmt.QuatizationTransfo(bio, quatization/(sqrt2+1));
 		int[] tempKey = fzzCmmt.KeyGenR(bio.length, realKey);
 		nativeCopy(tempKey,key);
 		nativeCopy(temQauatizaBio,quatizaBio);
