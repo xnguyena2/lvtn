@@ -12,5 +12,8 @@
 	<classpathentry kind="lib" path="C:/Users/Nguyen Phong/workspace/HTXTClient/lib/jai_codec.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Nguyen Phong/workspace/HTXTClient/lib/jai_core.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Nguyen Phong/LVTN/jasypt-1.9.2-dist/jasypt-1.9.2/lib/jasypt-1.9.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nguyen Phong/LVTN/jfreechart-1.0.19/jfreechart-1.0.19/lib/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nguyen Phong/LVTN/jfreechart-1.0.19/jfreechart-1.0.19/lib/junit-4.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Nguyen Phong/LVTN/jfreechart-1.0.19/jfreechart-1.0.19/lib/jcommon-1.0.23.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
